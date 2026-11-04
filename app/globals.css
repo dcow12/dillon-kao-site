@@ -777,6 +777,15 @@ button {
   object-fit: contain;
 }
 
+.pimg-natural .pimg-frame,
+.p-gallery .pimg-natural .pimg-frame {
+  aspect-ratio: auto;
+}
+
+.pimg-natural .pimg-frame img {
+  height: auto;
+}
+
 .p-cover {
   margin-top: 2.5rem;
   animation: blur-up 900ms var(--ease-out) 520ms backwards;

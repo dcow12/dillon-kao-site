@@ -25,9 +25,41 @@ export type Project = {
 };
 
 /** `panel` puts the image on a light background, uncropped (for charts and drawings). */
-export type Img = { src: string; alt: string; caption?: string; panel?: string };
+export type Img = { src: string; alt: string; caption?: string; panel?: string; natural?: boolean };
+// `natural` shows the whole image at its own shape (for UI screenshots with small text).
 
 export const projects: Project[] = [
+  {
+    slug: "controllerbridge",
+    name: "ControllerBridge",
+    summary: "Use a game controller as a keyboard and mouse on macOS and Windows.",
+    status: "Working app",
+    started: "Oct 2026",
+    stack: ["C++", "SDL3", "Rust", "Tauri", "React", "TypeScript"],
+    cover: { src: "/projects/controllerbridge-controller.jpg", alt: "ControllerBridge's controller view, with the A button mapped to Spacebar", caption: "The mapping editor: select a button, choose what it does.", natural: true },
+    gallery: { title: "In the app", columns: 1, images: [
+      { src: "/projects/controllerbridge-mappings.jpg", alt: "List of controller buttons and the keys or mouse buttons they're mapped to", caption: "Every button maps to a key, a click, or a macro.", natural: true },
+      { src: "/projects/controllerbridge-sticks.jpg", alt: "Left stick set to WASD and right stick set to mouse movement, each with a deadzone slider", caption: "Sticks as WASD or mouse, with deadzone and sensitivity.", natural: true },
+    ] },
+    idea: [
+      "I grew up playing Roblox with a controller. When I wanted to do the same thing on my Mac, almost every remapping tool I found was a Windows .exe, so I built my own.",
+      "ControllerBridge turns DualSense, DualShock 4, Xbox, Switch Pro, and other SDL-supported controllers into keystrokes, mouse movement, and timed macros. It has a mapping editor, a live input view, and JSON profiles you can import, export, and duplicate.",
+    ],
+    highlights: [
+      "A small C++ engine does the actual input translation, sending real keyboard and mouse events through CGEvent on macOS and SendInput on Windows.",
+      "Shows the right controller picture for DualSense, DualShock 4, Xbox, and Switch Pro, plus battery level and connection type when the controller reports them.",
+      "Either stick can drive WASD or the mouse, with adjustable deadzone and sensitivity.",
+      "Output starts paused, pauses again while you edit a mapping, and releases held keys if the controller disconnects.",
+    ],
+    how: {
+      flow: ["Controller", "SDL3", "C++ mapper", "CGEvent / SendInput"],
+      notes: [
+        "The engine runs as a separate process and polls the controller at about 250 Hz. It sends state to the UI at about 30 Hz, so rendering never slows down input.",
+        "A Tauri bridge written in Rust passes commands and state between the engine and the React UI as JSON lines over stdin and stdout.",
+        "Limits for now: one controller drives output at a time, profiles are switched by hand, and there's no gyro, touchpad, or rumble yet.",
+      ],
+    },
+  },
   {
     slug: "privy",
     name: "Privy",
