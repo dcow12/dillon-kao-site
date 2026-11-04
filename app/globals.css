@@ -251,7 +251,7 @@ button {
   letter-spacing: -0.03em;
 }
 
-.name-first {
+.name-word {
   display: inline-flex;
   padding-bottom: 0.08em;
   clip-path: inset(-0.4em -0.3em 0 -0.3em);
@@ -275,29 +275,6 @@ button {
     transform: translateY(0.055em) scaleY(0.955);
     transition: transform 110ms var(--ease-out);
   }
-}
-
-.name-last {
-  position: relative;
-  isolation: isolate;
-  display: inline-block;
-  padding: 0 0.14em;
-  clip-path: inset(0 round 0.08em);
-}
-
-.name-last::before {
-  content: "";
-  position: absolute;
-  inset: 0.08em 0 0;
-  z-index: -1;
-  border-radius: 0.08em;
-  background: var(--mark);
-  animation: wipe 750ms var(--ease-out) 430ms backwards;
-}
-
-.name-last-text {
-  display: inline-block;
-  animation: rise 900ms var(--ease-out) 640ms backwards;
 }
 
 .tagline {
