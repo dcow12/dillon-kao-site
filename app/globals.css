@@ -766,19 +766,107 @@ button {
   animation: blur-up 900ms var(--ease-out) 460ms backwards;
 }
 
-.p-cover {
-  margin-top: 2.5rem;
+/* Project images: screenshots fill the frame; charts and drawings sit on a panel. */
+.pimg figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.pimg-frame {
   overflow: hidden;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
   aspect-ratio: 16 / 10;
 }
 
-.p-cover img {
+.pimg-frame img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.pimg-panel .pimg-frame {
+  border-color: transparent;
+  background: var(--panel);
+}
+
+.pimg-panel .pimg-frame img {
+  padding: 6%;
+  object-fit: contain;
+}
+
+.p-cover {
+  margin-top: 2.5rem;
+  animation: blur-up 900ms var(--ease-out) 520ms backwards;
+}
+
+.p-gallery {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.p-gallery .pimg-frame {
+  aspect-ratio: 4 / 3;
+}
+
+.p-gallery .pimg:hover .pimg-frame img {
+  transform: scale(1.03);
+}
+
+/* Home: a small thumbnail beside each project */
+.proj {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  column-gap: 1.1rem;
+  align-items: center;
+}
+
+.proj-thumb {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  aspect-ratio: 16 / 10;
+}
+
+.proj-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.proj-thumb.is-panel {
+  border-color: transparent;
+  background: var(--panel);
+}
+
+.proj-thumb.is-panel img {
+  padding: 6%;
+  object-fit: contain;
+}
+
+.proj:hover .proj-thumb img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 640px) {
+  .proj {
+    grid-template-columns: 5.25rem minmax(0, 1fr);
+    column-gap: 0.85rem;
+    align-items: start;
+  }
+
+  .p-gallery {
+    grid-template-columns: repeat(min(var(--cols, 2), 2), minmax(0, 1fr));
+  }
 }
 
 .p-section {

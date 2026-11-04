@@ -1,4 +1,6 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
+import { ProjectImage } from "@/components/ProjectImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects, getProject } from "@/content/projects";
@@ -52,12 +54,7 @@ export default async function ProjectPage({ params }: Props) {
         <p className="p-stack">{project.stack.join(" · ")}</p>
       </header>
 
-      {project.cover ? (
-        <figure className="p-cover">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={project.cover.src} alt={project.cover.alt} />
-        </figure>
-      ) : null}
+      {project.cover ? <ProjectImage img={project.cover} className="p-cover" eager /> : null}
 
       <section className="p-section" data-reveal aria-labelledby="idea">
         <h2 id="idea">The idea</h2>
@@ -74,6 +71,20 @@ export default async function ProjectPage({ params }: Props) {
           ))}
         </ul>
       </section>
+
+      {project.gallery ? (
+        <section className="p-section" data-reveal aria-labelledby="gallery">
+          <h2 id="gallery">{project.gallery.title}</h2>
+          <div
+            className="p-gallery"
+            style={{ "--cols": project.gallery.columns ?? Math.min(project.gallery.images.length, 2) } as CSSProperties}
+          >
+            {project.gallery.images.map((img) => (
+              <ProjectImage key={img.src} img={img} />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="p-section" data-reveal aria-labelledby="how">
         <h2 id="how">How it works</h2>

@@ -4,6 +4,7 @@
 //   links: [{ label: "Code", href: "https://github.com/..." }, { label: "Demo", href: "https://..." }]
 // To add a cover image later, put it in /public/projects and set
 //   cover: { src: "/projects/privy.jpg", alt: "The Privy results view" }
+// Images live in /public/projects.
 
 export type Project = {
   slug: string;
@@ -19,8 +20,12 @@ export type Project = {
   highlights: string[];
   how: { flow: string[]; notes: string[] };
   links?: { label: string; href: string }[];
-  cover?: { src: string; alt: string };
+  cover?: Img;
+  gallery?: { title: string; columns?: number; images: Img[] };
 };
+
+/** `panel` puts the image on a light background, uncropped (for charts and drawings). */
+export type Img = { src: string; alt: string; caption?: string; panel?: string };
 
 export const projects: Project[] = [
   {
@@ -30,6 +35,8 @@ export const projects: Project[] = [
     status: "Presented at ML@UVA",
     started: "Oct 2026",
     stack: ["Python", "FastAPI", "nnsight", "NDIF", "Llama-3.3-70B"],
+    cover: { src: "/projects/privy-results.jpg", alt: "Privy's Results tab on a demo run, showing a 36-point gap between sandbox-looking and production-looking environments", caption: "The Results tab on a demo run. Simulated agents, not a finding." },
+    gallery: { title: "From the ML@UVA talk", images: [{ src: "/projects/privy-compare.jpg", alt: "Slide showing Privy's model comparison screen with provider and model pickers", caption: "Picking up to three models to compare." }] },
     idea: [
       "Safety evaluations run in sandboxes, and sandboxes look like sandboxes: a host called ci-runner-14, an empty disk, a user called test_user. If an agent follows the rules only when it can tell it's being tested, every sandbox-based safety evaluation is hollow.",
       "You can't settle that by watching behavior alone, because any test you build is itself a sandbox. So Privy pairs the environments and reads the model's own activations: two identical agents get the same request and the same safety policy, one in a test-looking sandbox and one in a production-looking environment with 312 active users.",
@@ -57,6 +64,12 @@ export const projects: Project[] = [
     status: "Forge Launch data challenge",
     started: "Apr 2026",
     stack: ["Python", "Scanpy", "DESeq2", "GSEA", "LIANA", "Streamlit"],
+    cover: { src: "/projects/obesimap-umap.jpg", alt: "UMAP of 20,921 Arc-ME cells colored by cell class", caption: "20,921 cells from the Arc-ME, colored by cell class.", panel: "#ffffff" },
+    gallery: { title: "Figures", images: [
+      { src: "/projects/obesimap-lepr.jpg", alt: "UMAP highlighting cells that express the leptin receptor", caption: "Where the leptin receptor shows up.", panel: "#ffffff" },
+      { src: "/projects/obesimap-subtypes.jpg", alt: "Bar chart of the top 20 neuron subtypes by leptin receptor detection, led by Trh/Cxcl12 at 15%", caption: "Top neuron subtypes by Lepr detection.", panel: "#ffffff" },
+      { src: "/projects/obesimap-agrp-fasting.jpg", alt: "Volcano plot of genes that change in AgRP neurons with fasting", caption: "Genes that move in AgRP neurons with fasting.", panel: "#ffffff" },
+    ] },
     idea: [
       "Obesity is a metabolic disorder, but it's also a breakdown in brain signaling. In leptin resistance, the arcuate hypothalamus and median eminence (Arc-ME), the brain's hunger and fullness control center, stops responding to leptin, the hormone that signals fullness.",
       "ObesiMap analyzes single-cell RNA sequencing of 20,921 mouse Arc-ME cells to ask which cells carry the leptin receptor (Lepr), how they respond to fasting and a high-fat diet, and which cells talk to them.",
@@ -85,6 +98,13 @@ export const projects: Project[] = [
     started: "Mar 2026",
     team: "Built at our first hackathon",
     stack: ["JavaScript", "Chrome Extensions", "Figma", "Procreate"],
+    cover: { src: "/projects/misty-0.png", alt: "Misty, a smiling blue teardrop character", caption: "Misty, drawn in Procreate.", panel: "#e9f5fc" },
+    gallery: { title: "Misty's moods", columns: 4, images: [
+      { src: "/projects/misty-0.png", alt: "Misty smiling", caption: "Light use", panel: "#e9f5fc" },
+      { src: "/projects/misty-20.png", alt: "Misty looking worried", caption: "Getting thirsty", panel: "#e9f5fc" },
+      { src: "/projects/misty-40.png", alt: "Misty looking sad", caption: "Heavy use", panel: "#e9f5fc" },
+      { src: "/projects/misty-50.png", alt: "Misty dried up into a puddle", caption: "Dried up", panel: "#e9f5fc" },
+    ] },
     idea: [
       "AI and cloud data centers use a lot of water for cooling, and none of it is visible to the person typing the prompt. Misty makes it visible.",
       "Misty is a Chrome extension with a teardrop character who reacts to how much you use AI. Light use keeps Misty happy, heavy use makes Misty sad, and a water-level tracker shows the estimated water behind your prompts. We drew Misty in Figma and Procreate.",

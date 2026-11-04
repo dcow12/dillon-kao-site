@@ -38,6 +38,17 @@ export default function Home() {
         <ul className="proj-list">
           {projects.map((project, i) => (
             <li key={project.slug} className="proj" data-reveal style={{ "--i": i } as CSSProperties}>
+              {project.cover ? (
+                <div
+                  className={`proj-thumb ${project.cover.panel ? "is-panel" : ""}`}
+                  style={project.cover.panel ? ({ "--panel": project.cover.panel } as CSSProperties) : undefined}
+                  aria-hidden="true"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={project.cover.src} alt="" loading="lazy" decoding="async" />
+                </div>
+              ) : null}
+              <div className="proj-body">
               <div className="proj-head">
                 <h3 className="proj-name">
                   <Link className="proj-link" href={`/projects/${project.slug}/`}>
@@ -48,6 +59,7 @@ export default function Home() {
                 <span className="proj-status">{project.status}</span>
               </div>
               <p className="proj-summary">{project.summary}</p>
+              </div>
             </li>
           ))}
         </ul>
