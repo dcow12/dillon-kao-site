@@ -1,0 +1,1202 @@
+/* ==========================================================================
+   Tokens (one theme: white ink on a plain black page)
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  --radius: 10px;
+  --step: 110ms; /* signal speed along the home-page traces, per milestone */
+  --vstep: 150ms; /* the same, for the project-page milestone list */
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --spring: linear(0, 0.0061, 0.0237 2.4%, 0.0899 4.9%, 0.4148 15.2%, 0.5987 21.6%, 0.7329 27.7%, 0.8458 34.6%, 0.9183 41.4%, 0.9652 48.6%, 0.9947 56.9%, 1.0101 65.4%, 1.0143 73.9%, 1.0105 84.4%, 1);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: var(--font-display), var(--font-sans);
+
+  --bg: #000000;
+  --fg: #f3f3f4;
+  --text: #cfcfd4;
+  --muted: #a1a1a8;
+  --surface: #141416;
+  --mark: #232326;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.24);
+  --accent: #ff8a2a; /* UVA orange: signals and the current milestone */
+  --accent-text: #ff9a45;
+  --selection: rgba(255, 138, 42, 0.28);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Page frame and top bar
+   ========================================================================== */
+
+.page {
+  width: 100%;
+  max-width: calc(42.5rem + 3rem);
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem 3rem;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  min-height: 2.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.topbar:has(.back),
+.topbar:has(.avatar) {
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  animation: blur-up 900ms var(--ease-out) 60ms backwards;
+}
+
+/* Logo links: GitHub, LinkedIn, Instagram, email */
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-right: -10px; /* line the last glyph up with the column edge */
+}
+
+.social-link {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+  animation: blur-up 800ms var(--ease-out) backwards;
+  animation-delay: calc(180ms + var(--i, 0) * 70ms);
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.35s var(--ease-out);
+}
+
+/* Optical balance: the solid marks read heavier than the outlined ones. */
+.social-github svg {
+  width: 19px;
+  height: 19px;
+}
+
+.social-linkedin svg {
+  width: 18px;
+  height: 18px;
+}
+
+.social-link:hover,
+.social-link[data-copied] {
+  color: var(--fg);
+  background: var(--surface);
+}
+
+.social-link:hover svg {
+  transform: translateY(-1px);
+}
+
+/* Tooltip label under each icon */
+.social-link::after {
+  content: attr(data-label);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  z-index: 5;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--fg);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -4px);
+  transition: opacity 0.15s, transform 0.3s var(--ease-out);
+}
+
+.social-link.social-edge::after {
+  left: auto;
+  right: 0;
+  transform: translateY(-4px);
+}
+
+.social-link:hover::after,
+.social-link:focus-visible::after,
+.social-link[data-copied]::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.social-link.social-edge:hover::after,
+.social-link.social-edge:focus-visible::after,
+.social-link.social-edge[data-copied]::after {
+  transform: none;
+}
+
+/* ==========================================================================
+   Intro: name, tagline, about
+   ========================================================================== */
+
+.name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.24em;
+  row-gap: 0.08em;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(2.75rem, 1.9rem + 3.6vw, 3.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+.name-first {
+  display: inline-flex;
+  padding-bottom: 0.08em;
+  clip-path: inset(-0.4em -0.3em 0 -0.3em);
+}
+
+.ltr {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  transition: transform 600ms var(--spring);
+}
+
+.ltr-in {
+  display: inline-block;
+  animation: rise 1s var(--ease-out) backwards;
+  animation-delay: calc(120ms + var(--i) * 48ms);
+}
+
+/* Letters press down like piano keys and spring back. */
+@media (hover: hover) {
+  .ltr:hover {
+    transform: translateY(0.055em) scaleY(0.955);
+    transition: transform 110ms var(--ease-out);
+  }
+}
+
+.name-last {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  padding: 0 0.14em;
+  clip-path: inset(0 round 0.08em);
+}
+
+.name-last::before {
+  content: "";
+  position: absolute;
+  inset: 0.08em 0 0;
+  z-index: -1;
+  border-radius: 0.08em;
+  background: var(--mark);
+  animation: wipe 750ms var(--ease-out) 430ms backwards;
+}
+
+.name-last-text {
+  display: inline-block;
+  animation: rise 900ms var(--ease-out) 640ms backwards;
+}
+
+.tagline {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--fg);
+  text-wrap: pretty;
+  animation: blur-up 900ms var(--ease-out) 780ms backwards;
+}
+
+.about {
+  display: grid;
+  gap: 1rem;
+  max-width: 34.5rem; /* about 75 characters per line */
+  margin-top: 2.25rem;
+}
+
+.about p {
+  color: var(--text);
+  line-height: 1.75;
+  text-wrap: pretty;
+  animation: blur-up 900ms var(--ease-out) backwards;
+  animation-delay: calc(940ms + var(--i) * 90ms);
+}
+
+/* Text links (used for project links once they're added) */
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: var(--fg);
+}
+
+.link > span {
+  position: relative;
+}
+
+.link > span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 380ms var(--ease-out);
+}
+
+.link:hover > span::after,
+.link:focus-visible > span::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+.section-title {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+  text-wrap: balance;
+}
+
+.projects {
+  margin-top: 4.5rem;
+  scroll-margin-top: 2rem;
+}
+
+.facts {
+  margin-top: 4rem;
+}
+
+/* ==========================================================================
+   Project list (home)
+   ========================================================================== */
+
+.proj {
+  position: relative;
+  isolation: isolate;
+  margin: 0 -0.9rem;
+  padding: 1.1rem 0.9rem 1.15rem;
+}
+
+/* Hover: a highlighter wipe, the same mark that sits behind the last name. */
+.proj::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--radius);
+  background: var(--surface);
+  clip-path: inset(0 100% 0 0 round var(--radius));
+  transition: clip-path 520ms var(--ease-out);
+}
+
+.proj:hover::before,
+.proj:has(.proj-link:focus-visible)::before {
+  clip-path: inset(0 0 0 0 round var(--radius));
+}
+
+.proj + .proj::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0.9rem;
+  right: 0.9rem;
+  height: 1px;
+  background: var(--border);
+}
+
+.proj-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 1rem;
+  row-gap: 0.1rem;
+}
+
+.proj-name {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.proj-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* The whole row is clickable; the link's name stays just the project name. */
+.proj-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+
+.proj-link:focus-visible {
+  outline: none;
+}
+
+.proj-link:focus-visible::after {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.proj-arrow {
+  width: 15px;
+  height: 15px;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.proj:hover .proj-arrow,
+.proj:has(.proj-link:focus-visible) .proj-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.proj-status {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.proj-summary {
+  max-width: 33rem;
+  margin-top: 0.3rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.proj-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+.trace-count {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Progress traces
+   ========================================================================== */
+
+.trace {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  height: 12px;
+}
+
+.trace-track {
+  position: absolute;
+  top: 50%;
+  left: 4.5px;
+  right: 4.5px;
+  height: 1.5px;
+  margin-top: -0.75px;
+  border-radius: 1px;
+  background: var(--border);
+}
+
+.trace-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  background: var(--fg);
+}
+
+.node {
+  position: relative;
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.node.done {
+  border-color: var(--fg);
+  background: var(--fg);
+}
+
+.node.current {
+  border-color: var(--accent);
+}
+
+.node.current::after {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Project page: vertical milestone list */
+
+.p-progress-note {
+  margin-bottom: 1.1rem;
+}
+
+.vstep {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  column-gap: 0.7rem;
+  padding-bottom: 0.95rem;
+}
+
+.vstep:last-child {
+  padding-bottom: 0;
+}
+
+.vstep:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: calc(0.32em + 18px);
+  bottom: -0.32em;
+  left: calc(0.75rem - 0.75px);
+  width: 1.5px;
+  background: var(--border);
+  transform-origin: top;
+}
+
+.vstep.done:has(+ .vstep.done)::before {
+  background: var(--fg);
+}
+
+.vdot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin: 0.32em 0 0 calc(0.75rem - 9px);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--bg);
+}
+
+.vdot svg {
+  width: 11px;
+  height: 11px;
+}
+
+.vstep.done .vdot {
+  border-color: var(--fg);
+  background: var(--fg);
+}
+
+.vstep.current .vdot {
+  border-color: var(--accent);
+}
+
+.vstep.current .vdot::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.vlabel {
+  line-height: 1.6;
+  color: var(--fg);
+  text-wrap: pretty;
+}
+
+.vstep.todo .vlabel {
+  color: var(--muted);
+}
+
+.vnext {
+  margin-left: 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--accent-text);
+}
+
+/* ==========================================================================
+   Fun facts
+   ========================================================================== */
+
+.facts ul {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.facts li {
+  position: relative;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.facts li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0.15rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 1.5px;
+  background: var(--border-strong);
+}
+
+/* ==========================================================================
+   Project page
+   ========================================================================== */
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  font-size: 0.875rem;
+  color: var(--muted);
+  transition: color 0.2s;
+  animation: fade-in 700ms var(--ease-out) 100ms backwards;
+}
+
+.back:hover {
+  color: var(--fg);
+}
+
+.back svg {
+  transition: transform 0.35s var(--ease-out);
+}
+
+.back:hover svg {
+  transform: translateX(-3px);
+}
+
+.p-title {
+  padding-bottom: 0.06em;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 1.7rem + 3vw, 3.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  clip-path: inset(-0.4em -0.3em 0 -0.3em);
+}
+
+.p-title > span {
+  display: inline-block;
+  animation: rise 1s var(--ease-out) 80ms backwards;
+}
+
+.p-summary {
+  max-width: 38rem;
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--fg);
+  text-wrap: pretty;
+  animation: blur-up 900ms var(--ease-out) 260ms backwards;
+}
+
+.p-meta {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.2rem;
+  margin-top: 1.1rem;
+  overflow: hidden; /* hides the separator of whichever item starts a line */
+  font-size: 0.875rem;
+  color: var(--muted);
+  animation: blur-up 900ms var(--ease-out) 380ms backwards;
+}
+
+.p-meta li {
+  position: relative;
+}
+
+.p-meta li::before {
+  content: "·";
+  position: absolute;
+  left: -0.78rem;
+  color: var(--border-strong);
+}
+
+.p-stack {
+  margin-top: 0.3rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+  animation: blur-up 900ms var(--ease-out) 460ms backwards;
+}
+
+.p-cover {
+  margin-top: 2.5rem;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface);
+  aspect-ratio: 16 / 10;
+}
+
+.p-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-section {
+  margin-top: 3.25rem;
+}
+
+.p-section h2 {
+  margin-bottom: 0.85rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.p-section p {
+  max-width: 34.5rem;
+  line-height: 1.75;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.p-section p + p {
+  margin-top: 1rem;
+}
+
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.4rem;
+  margin-bottom: 1.4rem;
+}
+
+.flow li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.flow-step {
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--fg);
+}
+
+.flow-arrow {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+}
+
+.notes {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 34.5rem;
+}
+
+.notes li {
+  position: relative;
+  padding-left: 1.25rem;
+  line-height: 1.7;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.notes li::before {
+  content: "";
+  position: absolute;
+  top: 0.82em;
+  left: 0.1rem;
+  width: 8px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--border-strong);
+}
+
+.p-links {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.35rem;
+}
+
+.p-next {
+  margin-top: 4rem;
+}
+
+.p-next a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.p-next a span {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 0.2s;
+}
+
+.p-next a:hover span {
+  text-decoration-color: var(--fg);
+}
+
+.p-next svg {
+  transition: transform 0.35s var(--ease-out);
+}
+
+.p-next a:hover svg {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-top: 5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.footer a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 0.2s;
+}
+
+.footer a:hover {
+  text-decoration-color: var(--fg);
+}
+
+/* ==========================================================================
+   Scroll reveals (content stays visible without JavaScript or with reduced motion)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Project rows fade up, then the signal runs along each trace. */
+  [data-js] .proj[data-reveal]:not(.in) {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .proj[data-reveal].in {
+    animation: row-in 800ms var(--ease-out) backwards;
+    animation-delay: calc(var(--wait, 0ms) + var(--i, 0) * 90ms);
+  }
+
+  [data-js] [data-reveal]:not(.in) .trace-fill {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  [data-js] [data-reveal]:not(.in) .node.done,
+  [data-js] [data-reveal]:not(.in) .node.current {
+    border-color: var(--border-strong);
+    background: var(--bg);
+  }
+
+  [data-js] [data-reveal]:not(.in) .node.current::after {
+    transform: scale(0);
+  }
+
+  [data-reveal].in .trace {
+    --t0: calc(var(--wait, 0ms) + var(--i, 0) * 90ms + 280ms);
+  }
+
+  [data-reveal].in .trace-fill {
+    animation: run calc(var(--last) * var(--step)) linear var(--t0) backwards;
+  }
+
+  [data-reveal].in .node.done {
+    animation: node-on 240ms var(--ease-out) backwards;
+    animation-delay: calc(var(--t0) + var(--n-i) * var(--step));
+  }
+
+  [data-reveal].in .node.current {
+    animation: node-arrive 600ms var(--ease-out) backwards;
+    animation-delay: calc(var(--t0) + var(--last) * var(--step) + 140ms);
+  }
+
+  [data-reveal].in .node.current::after {
+    animation: pop 500ms var(--ease-out) backwards;
+    animation-delay: calc(var(--t0) + var(--last) * var(--step) + 260ms);
+  }
+
+  /* Fun facts: the marker lands, then the line slides in. */
+  [data-js] .facts[data-reveal]:not(.in) li {
+    opacity: 0;
+  }
+
+  .facts[data-reveal].in li {
+    animation: slide-in 700ms var(--ease-out) backwards;
+    animation-delay: calc(var(--i) * 85ms);
+  }
+
+  .facts[data-reveal].in li::before {
+    animation: pop-tilt 550ms var(--ease-out) backwards;
+    animation-delay: calc(var(--i) * 85ms + 60ms);
+  }
+
+  /* Project page sections */
+  [data-js] .p-section[data-reveal]:not(.in) {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .p-section[data-reveal].in {
+    animation: row-in 800ms var(--ease-out) backwards;
+    animation-delay: var(--wait, 0ms);
+  }
+
+  [data-js] .vtrace[data-reveal]:not(.in) .vstep::before {
+    transform: scaleY(0);
+  }
+
+  [data-js] .vtrace[data-reveal]:not(.in) .vstep.done .vdot,
+  [data-js] .vtrace[data-reveal]:not(.in) .vstep.current .vdot {
+    border-color: var(--border-strong);
+    background: var(--bg);
+    color: transparent;
+  }
+
+  [data-js] .vtrace[data-reveal]:not(.in) .vstep.current .vdot::after {
+    transform: scale(0);
+  }
+
+  .vtrace.in {
+    --t0: calc(var(--wait, 0ms) + 300ms);
+  }
+
+  .vtrace.in .vstep.done .vdot {
+    animation: vnode-on 260ms var(--ease-out) backwards;
+    animation-delay: calc(var(--t0) + var(--n-i) * var(--vstep));
+  }
+
+  .vtrace.in .vstep:not(:last-child)::before {
+    animation: grow-down var(--vstep) linear backwards;
+    animation-delay: calc(var(--t0) + var(--n-i) * var(--vstep) + 60ms);
+  }
+
+  .vtrace.in .vstep.current .vdot {
+    animation: node-arrive 600ms var(--ease-out) backwards;
+    animation-delay: calc(var(--t0) + var(--n-i) * var(--vstep) + 60ms);
+  }
+
+  .vtrace.in .vstep.current .vdot::after {
+    animation: pop 500ms var(--ease-out) backwards;
+    animation-delay: calc(var(--t0) + var(--n-i) * var(--vstep) + 180ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   Keyframes
+   ========================================================================== */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(108%);
+  }
+}
+
+@keyframes wipe {
+  from {
+    clip-path: inset(0 100% 0 0 round 0.08em);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 0.08em);
+  }
+}
+
+@keyframes blur-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(6px);
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+}
+
+@keyframes run {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes node-on {
+  from {
+    border-color: var(--border-strong);
+    background-color: var(--bg);
+  }
+}
+
+@keyframes vnode-on {
+  from {
+    border-color: var(--border-strong);
+    background-color: var(--bg);
+    color: transparent;
+  }
+}
+
+@keyframes node-arrive {
+  from {
+    border-color: var(--border-strong);
+    transform: scale(0.6);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes pop-tilt {
+  from {
+    transform: scale(0) rotate(-45deg);
+  }
+}
+
+@keyframes grow-down {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+/* ==========================================================================
+   Small screens
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .page {
+    padding: 1.25rem 1rem 2.5rem;
+  }
+
+  .topbar {
+    margin-bottom: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 1.0625rem;
+  }
+
+  .about p,
+  .p-section p,
+  .notes li {
+    font-size: 1.0625rem;
+  }
+
+  .projects {
+    margin-top: 3.5rem;
+  }
+
+  .proj {
+    margin: 0 -0.75rem;
+    padding: 1rem 0.75rem 1.05rem;
+  }
+
+  .proj + .proj::after {
+    left: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .trace {
+    gap: 12px;
+  }
+}
