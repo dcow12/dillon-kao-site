@@ -36,11 +36,7 @@ export const projects: Project[] = [
     status: "Working app",
     started: "Oct 2026",
     stack: ["C++", "SDL3", "Rust", "Tauri", "React", "TypeScript"],
-    cover: { src: "/projects/controllerbridge-controller.jpg", alt: "ControllerBridge's controller view, with the A button mapped to Spacebar", caption: "The mapping editor: select a button, choose what it does.", natural: true },
-    gallery: { title: "In the app", columns: 1, images: [
-      { src: "/projects/controllerbridge-mappings.jpg", alt: "List of controller buttons and the keys or mouse buttons they're mapped to", caption: "Every button maps to a key, a click, or a macro.", natural: true },
-      { src: "/projects/controllerbridge-sticks.jpg", alt: "Left stick set to WASD and right stick set to mouse movement, each with a deadzone slider", caption: "Sticks as WASD or mouse, with deadzone and sensitivity.", natural: true },
-    ] },
+    cover: { src: "/projects/controllerbridge-dashboard.jpg", alt: "ControllerBridge dashboard with a controller preview, live input monitor, and active profile", caption: "The dashboard: controller status, live input, and the active profile.", natural: true },
     idea: [
       "I grew up playing Roblox with a controller. When I wanted to do the same thing on my Mac, almost every remapping tool I found was a Windows .exe, so I built my own.",
       "ControllerBridge turns DualSense, DualShock 4, Xbox, Switch Pro, and other SDL-supported controllers into keystrokes, mouse movement, and timed macros. It has a mapping editor, a live input view, and JSON profiles you can import, export, and duplicate.",
