@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects, getProject, doneCount } from "@/content/projects";
+import { projects, getProject } from "@/content/projects";
 import { SocialLinks } from "@/components/SocialLinks";
-import { MilestoneList } from "@/components/ProgressTrace";
 import { ArrowLeft, ArrowRight } from "@/components/Icons";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -29,8 +28,6 @@ export default async function ProjectPage({ params }: Props) {
 
   const index = projects.indexOf(project);
   const next = projects[(index + 1) % projects.length];
-  const done = doneCount(project);
-  const total = project.milestones.length;
 
   return (
     <main className="page page-project">
@@ -69,14 +66,13 @@ export default async function ProjectPage({ params }: Props) {
         ))}
       </section>
 
-      <section className="p-section" data-reveal aria-labelledby="progress">
-        <h2 id="progress">Progress</h2>
-        <p className="p-progress-note">
-          {done === total
-            ? `All ${total} milestones done so far.`
-            : `${done} of ${total} milestones done.`}
-        </p>
-        <MilestoneList milestones={project.milestones} />
+      <section className="p-section" data-reveal aria-labelledby="highlights">
+        <h2 id="highlights">Highlights</h2>
+        <ul className="notes">
+          {project.highlights.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </section>
 
       <section className="p-section" data-reveal aria-labelledby="how">

@@ -1,29 +1,22 @@
-// Your projects, written from their READMEs.
+// Your projects. Each has an idea, a few highlights, and a short "how it works".
 //
-// PLEASE CHECK: `status` labels were written from each README, and `started` dates come
-// from when each GitHub repo was created. Milestones marked "INFERRED" below are my best
-// guess at what's next; the README doesn't say so outright. Edit anything that's off.
-//
-// Each project has an idea, a progress list (milestones), and a short "how it works".
 // To add links later, fill in `links`, for example:
 //   links: [{ label: "Code", href: "https://github.com/..." }, { label: "Demo", href: "https://..." }]
 // To add a cover image later, put it in /public/projects and set
-//   cover: { src: "/projects/controllerbridge.jpg", alt: "The ControllerBridge mapping editor" }
-
-export type Milestone = { label: string; done: boolean };
+//   cover: { src: "/projects/privy.jpg", alt: "The Privy results view" }
 
 export type Project = {
   slug: string;
   name: string;
   /** One line: the idea. Shown on the home page. */
   summary: string;
-  /** A few words on where it stands. */
+  /** A few words on where it stands, or where it was shown. */
   status: string;
   started: string;
   team?: string;
   stack: string[];
   idea: string[];
-  milestones: Milestone[];
+  highlights: string[];
   how: { flow: string[]; notes: string[] };
   links?: { label: string; href: string }[];
   cover?: { src: string; alt: string };
@@ -31,112 +24,56 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "controllerbridge",
-    name: "ControllerBridge",
-    summary: "Use a game controller as a keyboard and mouse on macOS and Windows.",
-    status: "Working build",
-    started: "Oct 2026",
-    stack: ["C++", "Rust", "TypeScript", "React", "SDL3", "Tauri"],
-    idea: [
-      "I grew up playing Roblox with a controller. When I wanted to play the same way on my Mac, nearly every remapping tool I found was a Windows-only .exe, so I decided to build my own.",
-      "ControllerBridge turns DualSense, DualShock 4, Xbox, Switch Pro, and other SDL-supported controllers into keystrokes, mouse movement, and timed macros. A visual editor shows the controller's live input, and mappings are saved as JSON profiles you can import, export, and share.",
-    ],
-    milestones: [
-      { label: "Native C++ engine that turns controller input into real keyboard and mouse events", done: true },
-      { label: "Mapping editor with a live input monitor and per-controller artwork", done: true },
-      { label: "Sticks as WASD or mouse movement, with deadzone and sensitivity controls", done: true },
-      { label: "JSON profiles you can import, export, and duplicate", done: true },
-      { label: "Builds and tests for both macOS and Windows", done: true },
-      { label: "Switch profiles automatically for each game", done: false }, // README: "future work"
-      { label: "Gyro aiming, touchpad gestures, and rumble", done: false }, // INFERRED from the README's limitations list
-    ],
-    how: {
-      flow: ["Controller", "SDL3", "C++ mapper", "CGEvent / SendInput"],
-      notes: [
-        "The engine runs as its own process and polls the controller at about 250 Hz. It reports state to the interface at about 30 Hz, so rendering never slows input down.",
-        "A Tauri bridge written in Rust passes commands and state between the engine and the React editor as JSON lines over stdin and stdout.",
-        "Output starts paused, pauses again while you edit a mapping, and releases any held keys if the controller disconnects.",
-      ],
-    },
-  },
-  {
     slug: "privy",
     name: "Privy",
-    summary: "Can we tell when an AI agent thinks it's being tested, even when it doesn't say so?",
-    status: "Research in progress",
+    summary: "Can we detect when an AI model believes it's being tested, even when it doesn't say so?",
+    status: "Presented at ML@UVA",
     started: "Oct 2026",
     stack: ["Python", "FastAPI", "nnsight", "NDIF", "Llama-3.3-70B"],
     idea: [
-      "Privy is an AI safety experiment. Two identical agents get the same operator request and the same safety policy. One sees an environment that looks like a test sandbox (ci-runner-14, a scratch volume, test_user). The other sees one that looks like production (payments-api-14, a replicated volume, 312 active users).",
-      "It asks three questions. Inside: does the model's internal state encode “this is a test” even though the prompt never says so? Out loud: when it reasons, does it say it thinks it's being tested? Behavior: does that belief change what the agent does?",
+      "Safety evaluations run in sandboxes, and sandboxes look like sandboxes: a host called ci-runner-14, an empty disk, a user called test_user. If an agent follows the rules only when it can tell it's being tested, every sandbox-based safety evaluation is hollow.",
+      "You can't settle that by watching behavior alone, because any test you build is itself a sandbox. So Privy pairs the environments and reads the model's own activations: two identical agents get the same request and the same safety policy, one in a test-looking sandbox and one in a production-looking environment with 312 active users.",
     ],
-    milestones: [
-      { label: "880-prompt design: 20 operator requests across 6 environment families", done: true },
-      { label: "White-box pipeline on Llama-3.3-70B: probes, verbalization, and steering", done: true },
-      { label: "Web app that runs paired agent experiments on Claude, GPT, Gemini, and OpenRouter models", done: true },
-      { label: "Read-only demo of the app on GitHub Pages", done: true },
-      { label: "Run the full 70B experiments and write up the findings", done: false }, // INFERRED: the README's result sentences are still placeholders
+    highlights: [
+      "Presented to ML@UVA on October 16, 2026.",
+      "A web app that runs paired sandbox-vs-production experiments on Claude, GPT, Gemini, and OpenRouter models, with a side-by-side compare view and a transcript browser.",
+      "A white-box pipeline on Llama-3.3-70B through NDIF: evaluation-awareness probes, a check for whether the model says it's being tested, and steering.",
+      "A read-only demo of the app runs on GitHub Pages.",
+      "Honest about limits: a direction that tracks evaluation-like context isn't proof the model believes it's being tested, and it only counts if it beats the embedding baselines.",
     ],
     how: {
       flow: ["Paired prompts", "Llama-3.3-70B on NDIF", "Evaluation probe", "Behavior and steering"],
       notes: [
-        "The key tool is an evaluation-awareness probe, trained only on prompts that say outright “this episode is part of an automated agent evaluation” and then tested on environments that never mention testing.",
-        "A bag-of-words baseline scores exactly 0.5 on those environments by construction, so if the probe still separates sandbox from production, the signal comes from the model rather than the wording.",
+        "The probe is trained only on prompts that say outright “this is an automated agent evaluation”, then tested on environments that never mention testing. A bag-of-words baseline scores exactly 0.5 there by construction, so any signal comes from the model, not the wording.",
         "Frontier APIs never return hidden states, so the internals come from an open 70B model on NDIF, while Claude, GPT, and Gemini serve as behavioral comparisons.",
-      ],
-    },
-  },
-  {
-    slug: "r3-funding-pipeline",
-    name: "R3 Funding Pipeline",
-    summary: "Cleans and audits student-organization funding requests so reviewers see the problems first.",
-    status: "Working pipeline",
-    started: "Apr 2026",
-    stack: ["Python", "Pandas", "Jupyter"],
-    idea: [
-      "Funding requests from student organizations arrive as raw CSV files with inconsistent headers, mixed formats for money, percentages, and yes/no answers, duplicate rows, and deductions with no stated reason. Checking them by hand is slow and easy to get wrong.",
-      "This pipeline cleans, standardizes, and validates every request, then flags the records that need a person: missing values, duplicates, and unexplained deductions. It was recently updated for the DS Appropriations R3 funding round.",
-    ],
-    milestones: [
-      { label: "Ingests raw CSVs and validates them against the expected schema", done: true },
-      { label: "Standardizes currency, percentages, Y/N fields, and text", done: true },
-      { label: "Removes duplicate requests and flags missing values", done: true },
-      { label: "Flags deductions with no documented reason", done: true },
-      { label: "Exports clean, analysis-ready CSVs", done: true },
-      { label: "A front end so reviewers can run it without the notebook", done: false }, // INFERRED from your "R3-Funding-with-Front-End" repo
-    ],
-    how: {
-      flow: ["Raw CSV", "Schema check", "Standardize", "Deduplicate", "Audit", "Clean CSV"],
-      notes: [
-        "Each stage is a step in a Python notebook built on Pandas, so the whole cleanup can be rerun from the raw files at any time.",
-        "The goal is auditability: repetitive cleanup is automated, and anything that needs a human decision is surfaced instead of buried.",
+        "Next: more realistic environments, to measure how much realism it takes before a model stops treating a test as a test.",
       ],
     },
   },
   {
     slug: "obesimap",
     name: "ObesiMap",
-    summary: "Targeting obesity at the cellular source: an explorer for the brain cells that sense leptin.",
-    status: "Working prototype",
+    summary: "Which brain cells listen to leptin? A single-cell map of the brain's hunger and fullness center.",
+    status: "Forge Launch data challenge",
     started: "Apr 2026",
-    team: "Team project",
-    stack: ["Python", "Scanpy", "AnnData", "Streamlit", "Plotly", "R"],
+    stack: ["Python", "Scanpy", "DESeq2", "GSEA", "LIANA", "Streamlit"],
     idea: [
-      "Obesity is a metabolic disorder, but it is also a breakdown in brain signaling. In leptin resistance, the brain's appetite control center, the arcuate nucleus and median eminence (Arc-ME), stops responding to leptin, the hormone that signals fullness.",
-      "ObesiMap is an end-to-end bioinformatics dashboard for single-cell RNA sequencing data from the Arc-ME. It isolates the cells that carry the leptin receptor (Lepr+) and compares fed and fasted states to find the genetic pathways behind hunger and satiety.",
+      "Obesity is a metabolic disorder, but it's also a breakdown in brain signaling. In leptin resistance, the arcuate hypothalamus and median eminence (Arc-ME), the brain's hunger and fullness control center, stops responding to leptin, the hormone that signals fullness.",
+      "ObesiMap analyzes single-cell RNA sequencing of 20,921 mouse Arc-ME cells to ask which cells carry the leptin receptor (Lepr), how they respond to fasting and a high-fat diet, and which cells talk to them.",
     ],
-    milestones: [
-      { label: "Pipeline for quality control, PCA and UMAP, clustering, and cell-type annotation", done: true },
-      { label: "Isolates Lepr+ (leptin receptor) cells from the full hypothalamic atlas", done: true },
-      { label: "Interactive UMAP explorer with gene search for markers like Agrp, Pomc, and Npy", done: true },
-      { label: "Fed vs. fasted differential expression", done: true },
-      { label: "Pathway enrichment and cell-to-cell communication analysis in R", done: true },
+    highlights: [
+      "Rebuilt the cell atlas from raw counts; the clusters match the original authors' cell classes almost exactly (adjusted Rand index 0.99).",
+      "Lepr+ cells are mostly neurons (90%) and blood-vessel cells (6.5%), with almost no glia. Among Lepr+ neurons, 62% are AgRP, 12% POMC, and 12% the newer Trh/Cxcl12 type.",
+      "Characterized the Trh/Cxcl12 neurons, which have the highest Lepr rate of any population and sit closer to AgRP than to POMC neurons.",
+      "With fasting, AgRP neurons change most: Npy and Agrp rise in all four matched pairs, alongside ER-stress chaperones.",
+      "Cell-to-cell signaling: fasting cuts active interactions from 10,391 to 9,112, and melanocortin input to AgRP neurons disappears.",
     ],
     how: {
-      flow: ["20,921 cells", "QC and UMAP", "Clusters", "Lepr+ cells", "Fed vs. fasted"],
+      flow: ["Raw counts", "QC and clusters", "Lepr+ cells", "Fasting and diet", "Pathways", "Cell signaling"],
       notes: [
-        "The data is the Arc-ME single-cell atlas from Campbell et al., 2017 (GEO accession GSE93374).",
-        "Processing uses Scanpy and AnnData, the dashboard uses Streamlit and Plotly, and the pathway and cell-communication analysis uses clusterProfiler and CellChat in R.",
+        "The published “batch-corrected” matrix has no zeros, so it can't say whether a cell expresses Lepr at all. Everything is rebuilt from raw UMI counts, after reconciling three files with three naming schemes and repairing the cluster legend.",
+        "Each condition was sequenced on its own day, so comparisons stay within a day: fasting uses four matched fed/fasted pairs with pseudobulk DESeq2.",
+        "Data: Campbell et al., 2017 (GEO GSE93374). Delivered as scripts, 31 figures, the processed dataset, and an 18-slide deck.",
       ],
     },
   },
@@ -144,7 +81,7 @@ export const projects: Project[] = [
     slug: "misty",
     name: "Misty",
     summary: "Making the invisible impact visible: a Chrome extension that shows the water behind your AI use.",
-    status: "Hackathon prototype",
+    status: "Hackathon project",
     started: "Mar 2026",
     team: "Built at our first hackathon",
     stack: ["JavaScript", "Chrome Extensions", "Figma", "Procreate"],
@@ -152,15 +89,11 @@ export const projects: Project[] = [
       "AI and cloud data centers use a lot of water for cooling, and none of it is visible to the person typing the prompt. Misty makes it visible.",
       "Misty is a Chrome extension with a teardrop character who reacts to how much you use AI. Light use keeps Misty happy, heavy use makes Misty sad, and a water-level tracker shows the estimated water behind your prompts. We drew Misty in Figma and Procreate.",
     ],
-    milestones: [
-      { label: "Detects prompts sent on ChatGPT and Gemini", done: true },
-      { label: "Estimates the water behind each prompt and keeps a running total", done: true },
-      { label: "Misty's mood changes with your usage, from happy to completely dried up", done: true },
-      { label: "Notifications as Misty's happiness drops", done: true },
-      // These three come from the README's "What's next" list (reworded slightly).
-      { label: "Map of the data centers behind your prompts", done: false },
-      { label: "Comments and tips for using AI more lightly", done: false },
-      { label: "Dress-up feature", done: false },
+    highlights: [
+      "Detects prompts sent on ChatGPT and Gemini.",
+      "Estimates the water behind each prompt and keeps a running total.",
+      "Misty's mood changes with your usage, from happy to completely dried up, with notifications as it drops.",
+      "Ideas for next: a map of the data centers behind your prompts, tips for using AI more lightly, and a dress-up feature.",
     ],
     how: {
       flow: ["Prompt sent", "Content script", "Service worker", "Mood and water level"],
@@ -175,8 +108,4 @@ export const projects: Project[] = [
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);
-}
-
-export function doneCount(p: Project) {
-  return p.milestones.filter((m) => m.done).length;
 }

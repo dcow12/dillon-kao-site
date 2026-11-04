@@ -4,7 +4,6 @@ import { site } from "@/content/site";
 import { projects } from "@/content/projects";
 import { Name } from "@/components/Name";
 import { SocialLinks } from "@/components/SocialLinks";
-import { ProgressTrace } from "@/components/ProgressTrace";
 import { ArrowRight } from "@/components/Icons";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -49,7 +48,6 @@ export default function Home() {
                 <span className="proj-status">{project.status}</span>
               </div>
               <p className="proj-summary">{project.summary}</p>
-              <ProgressTrace milestones={project.milestones} />
             </li>
           ))}
         </ul>
