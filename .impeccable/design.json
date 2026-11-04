@@ -1,0 +1,341 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-04T17:52:26+00:00",
+  "title": "Design System: Dillon Kao",
+  "extensions": {
+    "colorMeta": {
+      "black": {
+        "role": "neutral",
+        "displayName": "Black",
+        "canonical": "oklch(0.0% 0.000 0.0)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#262626",
+          "#454545",
+          "#666666",
+          "#898989",
+          "#aeaeae",
+          "#d1d1d1",
+          "#eeeeee"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(96.4% 0.001 286.4)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#262627",
+          "#454545",
+          "#666667",
+          "#89898a",
+          "#aeaeaf",
+          "#d1d1d1",
+          "#eeeeef"
+        ]
+      },
+      "body-ink": {
+        "role": "neutral",
+        "displayName": "Body Ink",
+        "canonical": "oklch(85.6% 0.007 286.3)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#262628",
+          "#454547",
+          "#666669",
+          "#89898d",
+          "#adadb2",
+          "#d0d0d4",
+          "#eeeef0"
+        ]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "oklch(71.1% 0.010 286.1)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#262628",
+          "#454548",
+          "#65656b",
+          "#88888f",
+          "#adadb4",
+          "#d0d0d5",
+          "#eeeef1"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "oklch(19.2% 0.004 286.0)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#262627",
+          "#454546",
+          "#666668",
+          "#89898b",
+          "#adadb0",
+          "#d1d1d3",
+          "#eeeeef"
+        ]
+      },
+      "mark": {
+        "role": "neutral",
+        "displayName": "Mark",
+        "canonical": "oklch(25.7% 0.006 286.0)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#262628",
+          "#454547",
+          "#666669",
+          "#89898c",
+          "#adadb1",
+          "#d0d1d3",
+          "#eeeef0"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgba(255, 255, 255, 0.1)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#262626",
+          "#454545",
+          "#666666",
+          "#898989",
+          "#aeaeae",
+          "#d1d1d1",
+          "#eeeeee"
+        ]
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Hairline Strong",
+        "canonical": "rgba(255, 255, 255, 0.24)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#262626",
+          "#454545",
+          "#666666",
+          "#898989",
+          "#aeaeae",
+          "#d1d1d1",
+          "#eeeeee"
+        ]
+      },
+      "signal-orange": {
+        "role": "primary",
+        "displayName": "Signal Orange",
+        "canonical": "oklch(74.9% 0.173 54.0)",
+        "tonalRamp": [
+          "#180600",
+          "#411900",
+          "#703000",
+          "#a24900",
+          "#d66400",
+          "#ff8a2b",
+          "#ffbb83",
+          "#ffe4c9"
+        ]
+      },
+      "signal-orange-text": {
+        "role": "primary",
+        "displayName": "Signal Orange (text)",
+        "canonical": "oklch(77.7% 0.155 57.3)",
+        "tonalRamp": [
+          "#160700",
+          "#3e1c00",
+          "#6a3500",
+          "#9b4f00",
+          "#cd6c00",
+          "#f6913b",
+          "#ffbf89",
+          "#ffe6cc"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The person's name on the home page only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Project titles on project pages."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings."
+      },
+      "item": {
+        "displayName": "Item",
+        "purpose": "Project names in the home index; also body text on phones."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Tagline and project summaries."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Bio and project prose, about 75 characters per line; 17px on phones."
+      },
+      "link": {
+        "displayName": "Link",
+        "purpose": "One-line summaries in the index; project links once added."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Project meta, back link, pipeline steps, footer."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Status and counts (tabular numerals)."
+      },
+      "tag": {
+        "displayName": "Tag",
+        "purpose": "The orange Next up marker; icon tooltips at regular weight."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Every entrance, wipe, and hover transition."
+      },
+      {
+        "name": "spring",
+        "value": "linear(0, 0.0061, 0.0237 2.4%, 0.0899 4.9%, 0.4148 15.2%, 0.5987 21.6%, 0.7329 27.7%, 0.8458 34.6%, 0.9183 41.4%, 0.9652 48.6%, 0.9947 56.9%, 1.0101 65.4%, 1.0143 73.9%, 1.0105 84.4%, 1)",
+        "purpose": "Gentle settle-backs only: the letter key return and the theme icon morph."
+      },
+      {
+        "name": "mask-rise",
+        "value": "1000ms ease-out, 48ms stagger",
+        "purpose": "Letters rising through a baseline mask; project titles rise as one word."
+      },
+      {
+        "name": "highlighter-wipe",
+        "value": "clip-path inset, 520 to 750ms ease-out",
+        "purpose": "The surname mark and the project-row hover fill."
+      },
+      {
+        "name": "blur-up",
+        "value": "900ms ease-out, 8px rise, 6px blur",
+        "purpose": "Tagline, links, and bio, staggered after the name."
+      },
+      {
+        "name": "signal-step",
+        "value": "110ms per milestone (home), 150ms (project page), linear",
+        "purpose": "The progress trace run."
+      },
+      {
+        "name": "icon-entrance",
+        "value": "blur-up, 180ms then 70ms apart",
+        "purpose": "The top-bar logo icons arriving as the page opens."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Social icons",
+      "kind": "nav",
+      "refersTo": "social-icon",
+      "description": "Logo links at the top right of every page: GitHub, LinkedIn, Instagram, and an envelope that copies the email. Each shows its name in a tooltip.",
+      "html": "<nav class=\"ds-social\"><a class=\"ds-icon ds-gh\" href=\"#\" aria-label=\"GitHub\" data-label=\"GitHub\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12\"/></svg></a><a class=\"ds-icon ds-li\" href=\"#\" aria-label=\"LinkedIn\" data-label=\"LinkedIn\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z\"/></svg></a><a class=\"ds-icon\" href=\"#\" aria-label=\"Instagram\" data-label=\"Instagram\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.1\"><rect x=\"2.25\" y=\"2.25\" width=\"19.5\" height=\"19.5\" rx=\"5.6\"/><circle cx=\"12\" cy=\"12\" r=\"4.6\"/><circle cx=\"17.65\" cy=\"6.35\" r=\"1.3\" fill=\"currentColor\" stroke=\"none\"/></svg></a><button class=\"ds-icon ds-edge\" type=\"button\" aria-label=\"Copy email address\" data-label=\"Copy email\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"4.25\" width=\"20\" height=\"15.5\" rx=\"2.75\"/><path d=\"m2.9 6.4 9.1 6.6 9.1-6.6\"/></svg></button></nav>",
+      "css": ".ds-social{display:flex;align-items:center;gap:.25rem;padding:8px 0 36px}.ds-icon{position:relative;display:inline-grid;place-items:center;width:40px;height:40px;padding:0;border:0;border-radius:10px;background:transparent;color:var(--muted,#a1a1a8);cursor:pointer;transition:color .2s,background-color .2s}.ds-icon svg{width:20px;height:20px;transition:transform .35s cubic-bezier(.16,1,.3,1)}.ds-gh svg{width:19px;height:19px}.ds-li svg{width:18px;height:18px}.ds-icon:hover{color:var(--fg,#f3f3f4);background:var(--surface,#141416)}.ds-icon:hover svg{transform:translateY(-1px)}.ds-icon:focus-visible{outline:2px solid var(--accent,#ff8a2a);outline-offset:3px}.ds-icon::after{content:attr(data-label);position:absolute;top:calc(100% + 6px);left:50%;padding:3px 8px;border:1px solid var(--border,rgba(255,255,255,.1));border-radius:6px;background:var(--surface,#141416);color:var(--fg,#f3f3f4);font:12px/1.4 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;white-space:nowrap;pointer-events:none;opacity:0;transform:translate(-50%,-4px);transition:opacity .15s,transform .3s cubic-bezier(.16,1,.3,1)}.ds-icon:hover::after,.ds-icon:focus-visible::after{opacity:1;transform:translate(-50%,0)}.ds-edge::after{left:auto;right:0;transform:translateY(-4px)}.ds-edge:hover::after,.ds-edge:focus-visible::after{transform:none}"
+    },
+    {
+      "name": "Name lockup",
+      "kind": "custom",
+      "refersTo": "name-mark",
+      "description": "Serif display name with the highlighter-boxed surname; letters dip like piano keys on hover.",
+      "html": "<h1 class=\"ds-name\"><span class=\"ds-first\"><span class=\"ds-ltr\">D</span><span class=\"ds-ltr\">i</span><span class=\"ds-ltr\">l</span><span class=\"ds-ltr\">l</span><span class=\"ds-ltr\">o</span><span class=\"ds-ltr\">n</span></span><span class=\"ds-last\">Kao</span></h1>",
+      "css": ".ds-name{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.26em;margin:0;font-family:'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;font-weight:600;font-size:3.75rem;line-height:1.08;letter-spacing:-.03em;color:var(--fg,#f3f3f4)}.ds-first{display:inline-flex;padding-bottom:.08em}.ds-ltr{display:inline-block;transform-origin:50% 100%;transition:transform 600ms cubic-bezier(.16,1,.3,1)}.ds-ltr:hover{transform:translateY(.055em) scaleY(.955);transition-duration:110ms}.ds-last{display:inline-block;padding:0 .12em;border-radius:.08em;background:var(--mark,#232326)}"
+    },
+    {
+      "name": "Project row",
+      "kind": "card",
+      "refersTo": "project-row",
+      "description": "One entry in the project index: name and status, a one-line idea, and the progress trace. The hover fill wipes in from the left.",
+      "html": "<div class=\"ds-row\"><div class=\"ds-row-head\"><a class=\"ds-row-link\" href=\"#\">ControllerBridge <svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8h9.5\"/><path d=\"M8.75 4.25 12.5 8l-3.75 3.75\"/></svg></a><span class=\"ds-row-status\">Working build</span></div><p class=\"ds-row-summary\">Use a game controller as a keyboard and mouse on macOS and Windows.</p><div class=\"ds-progress\"><span class=\"ds-trace\"><span class=\"ds-track\"><span class=\"ds-fill\" style=\"width:66.7%\"></span></span><i class=\"ds-node done\"></i><i class=\"ds-node done\"></i><i class=\"ds-node done\"></i><i class=\"ds-node done\"></i><i class=\"ds-node done\"></i><i class=\"ds-node current\"></i><i class=\"ds-node\"></i></span><span class=\"ds-count\">5 of 7 done</span></div></div>",
+      "css": ".ds-row{position:relative;isolation:isolate;max-width:680px;padding:1.1rem .9rem 1.15rem;font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;color:var(--fg,#f3f3f4)}.ds-row::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:10px;background:var(--surface,#141416);clip-path:inset(0 100% 0 0 round 10px);transition:clip-path 520ms cubic-bezier(.16,1,.3,1)}.ds-row:hover::before{clip-path:inset(0 0 0 0 round 10px)}.ds-row-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;column-gap:1rem}.ds-row-link{display:inline-flex;align-items:center;gap:.35rem;font-family:'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em;color:inherit;text-decoration:none}.ds-row-link svg{color:var(--muted,#a1a1a8);opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .4s cubic-bezier(.16,1,.3,1)}.ds-row:hover .ds-row-link svg{opacity:1;transform:none}.ds-row-link:focus-visible{outline:2px solid var(--accent,#ff8a2a);outline-offset:3px;border-radius:6px}.ds-row-status,.ds-count{font-size:.8125rem;color:var(--muted,#a1a1a8);font-variant-numeric:tabular-nums}.ds-row-summary{margin:.3rem 0 0;font-size:.9375rem;line-height:1.6;color:var(--muted,#a1a1a8)}.ds-progress{display:flex;align-items:center;gap:.85rem;margin-top:.85rem}.ds-trace{position:relative;display:inline-flex;align-items:center;gap:14px;height:12px}.ds-track{position:absolute;top:50%;left:4.5px;right:4.5px;height:1.5px;margin-top:-.75px;background:var(--border,rgba(255,255,255,.1))}.ds-fill{position:absolute;top:0;bottom:0;left:0;background:var(--fg,#f3f3f4)}.ds-node{position:relative;width:9px;height:9px;border:1.5px solid var(--border-strong,rgba(255,255,255,.24));border-radius:50%;background:var(--bg,#000);box-sizing:border-box}.ds-node.done{border-color:var(--fg,#f3f3f4);background:var(--fg,#f3f3f4)}.ds-node.current{border-color:var(--accent,#ff8a2a)}.ds-node.current::after{content:'';position:absolute;inset:1.5px;border-radius:50%;background:var(--accent,#ff8a2a)}"
+    },
+    {
+      "name": "Milestone list",
+      "kind": "custom",
+      "refersTo": "project-row",
+      "description": "The vertical progress trace on project pages: checked nodes joined by ink connectors, the current step in orange with a Next up label.",
+      "html": "<ol class=\"ds-vtrace\"><li class=\"ds-vstep done\"><span class=\"ds-vdot\"><svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3.75 8.25 2.75 2.75 5.75-6\"/></svg></span><span>Native C++ engine that turns controller input into real keyboard and mouse events</span></li><li class=\"ds-vstep done\"><span class=\"ds-vdot\"><svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3.75 8.25 2.75 2.75 5.75-6\"/></svg></span><span>JSON profiles you can import, export, and duplicate</span></li><li class=\"ds-vstep current\"><span class=\"ds-vdot\"></span><span>Switch profiles automatically for each game <b class=\"ds-next\">Next up</b></span></li><li class=\"ds-vstep\"><span class=\"ds-vdot\"></span><span class=\"ds-todo\">Gyro aiming, touchpad gestures, and rumble</span></li></ol>",
+      "css": ".ds-vtrace{margin:0;padding:0;list-style:none;font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;color:var(--fg,#f3f3f4)}.ds-vstep{position:relative;display:grid;grid-template-columns:1.5rem 1fr;column-gap:.7rem;padding-bottom:.95rem;line-height:1.6}.ds-vstep:last-child{padding-bottom:0}.ds-vstep:not(:last-child)::before{content:'';position:absolute;top:calc(.32em + 18px);bottom:-.32em;left:calc(.75rem - .75px);width:1.5px;background:var(--border,rgba(255,255,255,.1))}.ds-vstep.done:has(+ .ds-vstep.done)::before{background:var(--fg,#f3f3f4)}.ds-vdot{position:relative;z-index:1;display:grid;place-items:center;width:18px;height:18px;margin:.32em 0 0 calc(.75rem - 9px);border:1.5px solid var(--border-strong,rgba(255,255,255,.24));border-radius:50%;background:var(--bg,#000);color:var(--bg,#000);box-sizing:border-box}.ds-vdot svg{width:11px;height:11px}.ds-vstep.done .ds-vdot{border-color:var(--fg,#f3f3f4);background:var(--fg,#f3f3f4)}.ds-vstep.current .ds-vdot{border-color:var(--accent,#ff8a2a)}.ds-vstep.current .ds-vdot::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent,#ff8a2a)}.ds-next{margin-left:.55rem;font-size:.75rem;font-weight:600;color:var(--accent-text,#ff9a45)}.ds-todo{color:var(--muted,#a1a1a8)}"
+    },
+    {
+      "name": "Pipeline flow",
+      "kind": "chip",
+      "refersTo": "flow-step",
+      "description": "How it works: hairline pills joined by small arrows, wrapping freely.",
+      "html": "<ol class=\"ds-flow\"><li><span class=\"ds-step\">Controller</span><svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8h9.5\"/><path d=\"M8.75 4.25 12.5 8l-3.75 3.75\"/></svg></li><li><span class=\"ds-step\">SDL3</span><svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8h9.5\"/><path d=\"M8.75 4.25 12.5 8l-3.75 3.75\"/></svg></li><li><span class=\"ds-step\">C++ mapper</span></li></ol>",
+      "css": ".ds-flow{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem .4rem;margin:0;padding:0;list-style:none;font-family:ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif}.ds-flow li{display:inline-flex;align-items:center;gap:.4rem}.ds-flow svg{width:14px;height:14px;color:var(--muted,#a1a1a8)}.ds-step{display:inline-block;padding:.28rem .7rem;border:1px solid var(--border,rgba(255,255,255,.1));border-radius:999px;background:var(--bg,#000);font-size:.875rem;line-height:1.45;color:var(--fg,#f3f3f4)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "One Signal in the Dark",
+    "overview": "The site is a quiet single column of white ink on a plain black page. There is no background texture, no grid, and no ambient effect: the black is the whole ground, at the user's request. The layout follows elliotlindberg.com, as the user originally asked: a big name with a boxed surname, a short line about Dillon, the bio, then the work. The only moving signal on the page is progress. Projects are an index of ideas, and each one shows how far along it is as a signal running along a thin trace.\n\nDensity is low and the rhythm is generous. A modern grotesque with character (Bricolage Grotesque) sets the name and every heading; the native system sans sets everything a visitor reads. Color is almost absent: a single orange (UVA orange) marks whatever is live, the current milestone and the focus ring, and nothing else carries hue. Depth is tonal, never shadowed.\n\nThe user rejected cursor-following effects (\"a weird glow around the cursor\"), a light mode, and decoration on the background. Social links are logos, not words, and they sit at the top of every page.",
+    "keyCharacteristics": [
+      "A plain black page, one theme, nothing drawn on the background.",
+      "Bricolage Grotesque for names and headings, the system sans for all reading text.",
+      "Logo icons (GitHub, LinkedIn, Instagram, email) at the top right of every page.",
+      "Progress is drawn: nodes on a thin trace, filled when done, orange when next.",
+      "A highlighter-wipe mark that recurs: behind the surname, and as the project-row hover."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Orange marks what is live, meaning the current milestone, the focus ring, and selection. If it is decorative, it is not orange.",
+        "section": "colors"
+      },
+      {
+        "name": "The Plain Black Rule",
+        "body": "The page is pure black (#000000) with nothing behind the content: no grid, no pattern, no glow, no light mode.",
+        "section": "colors"
+      },
+      {
+        "name": "The Grotesque-for-Names Rule",
+        "body": "Bricolage Grotesque sets names and headings only. Paragraphs, labels, and meta stay in the system sans.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Eyebrow Rule",
+        "body": "Nothing sits above a heading. Status and dates go beside or below it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Page Rule",
+        "body": "Surfaces never lift. A state change is shown with a fill wiping or fading in, not a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the page pure black (#000000) with nothing drawn behind the content.",
+      "Do keep orange to the live signal: the current milestone, the focus ring, and selection.",
+      "Do keep content visible by default. Reveal starting states apply only behind the data-js flag, with the 2.5-second fallback, and reduced motion shows every final state.",
+      "Do use the expo-out curve (cubic-bezier(0.16, 1, 0.3, 1)) for entrances and the gentle spring only for small settle-backs.",
+      "Do keep the social links as logo icons at the top right of every page.",
+      "Do leave room for a 64px rounded profile photo in the top-left slot when one is added."
+    ],
+    "donts": [
+      "Don't add a light mode or a theme toggle.",
+      "Don't add background grids, patterns, particles, or glows, and never anything that follows the cursor. The user explicitly rejected all of these.",
+      "Don't use bounce or elastic easing, or shadows of any kind.",
+      "Don't put labels or eyebrows above headings, or turn the project index into same-size icon cards.",
+      "Don't set paragraphs or labels in Bricolage Grotesque. It is for names and headings only.",
+      "Don't introduce a second accent hue."
+    ]
+  }
+}
