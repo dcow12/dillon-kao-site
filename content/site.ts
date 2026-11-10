@@ -21,7 +21,7 @@ export const site = {
   ],
 
   about: [
-    "I'm Dillon, a second-year Computer Science and Math student at the University of Virginia. I like projects where software meets hardware: code that has to deal with real devices, real data, and the people using them.",
+    "I'm Dillon, a second-year Computer Science student at the University of Virginia. I like projects where software meets hardware: code that has to deal with real devices, real data, and the people using them.",
     "I'm most interested in software development, artificial intelligence, and embedded systems. Lately that has meant a native C++ engine that turns game controllers into a keyboard and mouse, experiments on whether a 70‑billion‑parameter language model can tell when it's being tested, and a single-cell dashboard for studying leptin resistance in the brain.",
     "I learn fastest by building, so I'm always picking up new skills, looking for interesting problems, and hoping to work with people who care about the details. If something here catches your eye, reach out.",
   ],
