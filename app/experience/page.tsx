@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: `Experience and education of ${site.firstName} ${site.lastName}.`,
+  description: `Experience of ${site.firstName} ${site.lastName}.`,
 };
 
 export default function ExperiencePage() {
@@ -31,25 +31,6 @@ export default function ExperiencePage() {
 
       <section className="exp exp-page" aria-label="All experience">
         <ExperienceList items={site.experience} />
-      </section>
-
-      <section className="exp" aria-labelledby="edu-title">
-        <h2 id="edu-title" className="section-title">
-          Education
-        </h2>
-        <div className="exp-item">
-          <div className="exp-logo exp-logo-text" aria-hidden="true">
-            UVA
-          </div>
-          <div className="exp-body">
-            <div className="exp-head">
-              <h3 className="exp-role">{site.education.school}</h3>
-              <span className="exp-dates">{site.education.dates}</span>
-            </div>
-            <p className="exp-degree">{site.education.degree}</p>
-            <p className="exp-detail">{site.education.detail}</p>
-          </div>
-        </div>
       </section>
 
       <SiteFooter />

@@ -3,9 +3,9 @@
 export const site = {
   firstName: "Dillon",
   lastName: "Kao",
-  tagline: "2nd year Computer Science @ UVA",
+  tagline: "2nd year Computer Science & Math @ UVA",
   description:
-    "Dillon Kao is a second-year Computer Science student at the University of Virginia building across software, AI, and embedded systems.",
+    "Dillon Kao is a second-year Computer Science and Math student at the University of Virginia building across software, AI, and embedded systems.",
 
   // Add a profile photo later: put the file in /public (for example /public/me.jpg)
   // and set this to { src: "/me.jpg", alt: "Dillon Kao" }.
@@ -21,7 +21,7 @@ export const site = {
   ],
 
   about: [
-    "I'm Dillon, a second-year Computer Science student at the University of Virginia. I like projects where software meets hardware: code that has to deal with real devices, real data, and the people using them.",
+    "I'm Dillon, a second-year Computer Science and Math student at the University of Virginia. I like projects where software meets hardware: code that has to deal with real devices, real data, and the people using them.",
     "I'm most interested in software development, artificial intelligence, and embedded systems. Lately that has meant a native C++ engine that turns game controllers into a keyboard and mouse, experiments on whether a 70‑billion‑parameter language model can tell when it's being tested, and a single-cell dashboard for studying leptin resistance in the brain.",
     "I learn fastest by building, so I'm always picking up new skills, looking for interesting problems, and hoping to work with people who care about the details. If something here catches your eye, reach out.",
   ],
@@ -77,13 +77,6 @@ export const site = {
       ],
     },
   ],
-
-  education: {
-    school: "University of Virginia",
-    degree: "B.S. Computer Science (intended), B.A. Mathematics",
-    dates: "Expected May 2029",
-    detail: "GPA 3.864 · Data Structures and Algorithms, Computer Systems & Organization, Discrete Math, Software Development",
-  },
 
   funFacts: [
     "I love playing the piano.",
