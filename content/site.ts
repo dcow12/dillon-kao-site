@@ -26,6 +26,58 @@ export const site = {
     "I learn fastest by building, so I'm always picking up new skills, looking for interesting problems, and hoping to work with people who care about the details. If something here catches your eye, reach out.",
   ],
 
+  // From your resume. Newest first; "Present" for ongoing roles.
+  experience: [
+    {
+      role: "Webmaster Intern",
+      org: "Taiwanese Student Association",
+      dates: "Sept 2026 – Present",
+      points: [
+        "Build and maintain the club website with React, TypeScript, and Vercel, keeping event info current for events with 200+ attendees.",
+      ],
+    },
+    {
+      role: "Hardware Integration Subteam Member",
+      org: "Solar Car Team",
+      dates: "Sept 2026 – Present",
+      points: ["PCB design, schematic capture, and circuit layout in KiCad."],
+    },
+    {
+      role: "Appropriations Member and Data Tooler",
+      org: "UVA Student Council",
+      dates: "Sept 2025 – Present",
+      points: [
+        "Review and approve funding for student organizations (CIOs).",
+        "Built a data-cleaning pipeline that flags missing information in funding CSVs, deployed through a Streamlit front end for the funding dashboard.",
+      ],
+    },
+    {
+      role: "Independent Developer",
+      org: "Roblox",
+      dates: "June 2024 – Present",
+      points: [
+        "Grew sales through 3D modeling, trend research, and social media outreach, reaching 55,000+ in-game sales.",
+        "Accepted into Roblox's Developer Exchange (DevEx) program; converted $20,000 of in-game currency into $5,500+ USD.",
+      ],
+    },
+    {
+      role: "Friendship Buddy and Board Member",
+      org: "Friendship Circle",
+      dates: "Dec 2021 – Present",
+      points: [
+        "Mentor children with special needs through the Teen Buddy program; featured in an article that helped raise $5,000+ in donations.",
+        "Organized a charity cricket tournament with national-level players that raised about $500.",
+      ],
+    },
+  ],
+
+  education: {
+    school: "University of Virginia",
+    degree: "B.S. Computer Science (intended), B.A. Mathematics",
+    dates: "Expected May 2029",
+    detail: "GPA 3.864 · Data Structures and Algorithms, Computer Systems & Organization, Discrete Math, Software Development",
+  },
+
   funFacts: [
     "I love playing the piano.",
     "My all-you-can-eat sushi record is 130 pieces.",

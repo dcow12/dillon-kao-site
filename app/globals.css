@@ -1274,3 +1274,107 @@ button {
     gap: 12px;
   }
 }
+
+/* ==========================================================================
+   Experience and education
+   ========================================================================== */
+
+.exp {
+  margin-top: 4.5rem;
+}
+
+.exp-list {
+  display: grid;
+}
+
+.exp-item {
+  padding: 1rem 0 1.1rem;
+}
+
+.exp-item + .exp-item {
+  border-top: 1px solid var(--border);
+}
+
+.exp-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 1rem;
+  row-gap: 0.1rem;
+}
+
+.exp-role {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.exp-org {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.exp-dates {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.exp-points {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 34.5rem;
+  margin-top: 0.45rem;
+}
+
+.exp-points li,
+.exp-detail {
+  position: relative;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.exp-points li {
+  padding-left: 1.1rem;
+}
+
+.exp-points li::before {
+  content: "";
+  position: absolute;
+  top: 0.8em;
+  left: 0.1rem;
+  width: 7px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--border-strong);
+}
+
+.exp-degree {
+  margin-top: 0.3rem;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+
+.exp-detail {
+  margin-top: 0.2rem;
+  max-width: 34.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-js] .exp-item[data-reveal]:not(.in) {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .exp-item[data-reveal].in {
+    animation: row-in 700ms var(--ease-out) backwards;
+    animation-delay: calc(var(--wait, 0ms) + var(--i, 0) * 70ms);
+  }
+}
