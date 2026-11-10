@@ -4,6 +4,7 @@ import { site } from "@/content/site";
 import { projects } from "@/content/projects";
 import { Name } from "@/components/Name";
 import { SocialLinks } from "@/components/SocialLinks";
+import { ExperienceList } from "@/components/ExperienceList";
 import { ArrowRight } from "@/components/Icons";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -69,37 +70,11 @@ export default function Home() {
         <h2 id="exp-title" className="section-title">
           Experience
         </h2>
-        <ul className="exp-list">
-          {site.experience.map((item, i) => (
-            <li key={item.role + item.org} className="exp-item" data-reveal style={{ "--i": i } as CSSProperties}>
-              <div className="exp-head">
-                <h3 className="exp-role">
-                  {item.role} <span className="exp-org">· {item.org}</span>
-                </h3>
-                <span className="exp-dates">{item.dates}</span>
-              </div>
-              <ul className="exp-points">
-                {item.points.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="exp" aria-labelledby="edu-title">
-        <h2 id="edu-title" className="section-title">
-          Education
-        </h2>
-        <div className="exp-item">
-          <div className="exp-head">
-            <h3 className="exp-role">{site.education.school}</h3>
-            <span className="exp-dates">{site.education.dates}</span>
-          </div>
-          <p className="exp-degree">{site.education.degree}</p>
-          <p className="exp-detail">{site.education.detail}</p>
-        </div>
+        <ExperienceList items={site.experience.slice(0, site.experiencePreview)} />
+        <Link className="exp-more" href="/experience/">
+          <span>Show all experience</span>
+          <ArrowRight />
+        </Link>
       </section>
 
       <section className="facts" aria-labelledby="facts-title" data-reveal>

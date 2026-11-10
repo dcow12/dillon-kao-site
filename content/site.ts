@@ -26,11 +26,14 @@ export const site = {
     "I learn fastest by building, so I'm always picking up new skills, looking for interesting problems, and hoping to work with people who care about the details. If something here catches your eye, reach out.",
   ],
 
-  // From your resume. Newest first; "Present" for ongoing roles.
+  // From your resume. Newest first; "Present" for ongoing roles. Logos live in /public/logos.
+  // The home page shows the first `experiencePreview` entries; /experience shows them all.
+  experiencePreview: 3,
   experience: [
     {
       role: "Webmaster Intern",
       org: "Taiwanese Student Association",
+      logo: "/logos/tsa.png",
       dates: "Sept 2026 – Present",
       points: [
         "Build and maintain the club website with React, TypeScript, and Vercel, keeping event info current for events with 200+ attendees.",
@@ -39,12 +42,14 @@ export const site = {
     {
       role: "Hardware Integration Subteam Member",
       org: "Solar Car Team",
+      logo: "/logos/solar-car.png",
       dates: "Sept 2026 – Present",
       points: ["PCB design, schematic capture, and circuit layout in KiCad."],
     },
     {
       role: "Appropriations Member and Data Tooler",
       org: "UVA Student Council",
+      logo: "/logos/student-council.png",
       dates: "Sept 2025 – Present",
       points: [
         "Review and approve funding for student organizations (CIOs).",
@@ -54,6 +59,7 @@ export const site = {
     {
       role: "Independent Developer",
       org: "Roblox",
+      logo: "/logos/roblox.png",
       dates: "June 2024 – Present",
       points: [
         "Grew sales through 3D modeling, trend research, and social media outreach, reaching 55,000+ in-game sales.",
@@ -62,7 +68,8 @@ export const site = {
     },
     {
       role: "Friendship Buddy and Board Member",
-      org: "Friendship Circle",
+      org: "Friendship Circle of Virginia",
+      logo: "/logos/friendship-circle.png",
       dates: "Dec 2021 – Present",
       points: [
         "Mentor children with special needs through the Teen Buddy program; featured in an article that helped raise $5,000+ in donations.",
